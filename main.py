@@ -12,7 +12,7 @@ app = Flask(__name__)
 gmail_address = os.environ.get("gmail_address")
 gmail_password = os.environ.get("gmail_password")
 receiver_address = "lesliedouglas23@gmail.com"
-app.config['SECRET_KEY'] = "werwefasd"
+app.config['SECRET_KEY'] = os.environ.get("secret_key")
 Bootstrap(app)
 
 
