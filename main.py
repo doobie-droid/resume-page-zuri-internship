@@ -36,14 +36,14 @@ def home():
     if form.validate_on_submit():
         name1, email_address1, body1 = form.name.data, form.email_address.data, form.body.data
         subject = name1 + email_address1
-        msg = Message(subject, sender=os.environ.get("gmail_address"), recipients=[receiver_address])
-        msg.body = body1
-        mail.send(msg)
-        # with smtplib.SMTP('smtp.gmail.com') as email_protocol:
-        #     email_protocol.starttls()
-        #     email_protocol.login(user=gmail_address, password=gmail_password)
-        #     email_protocol.sendmail(from_addr=gmail_address, to_addrs=receiver_address,
-        #                             msg=f"Subject:Contact Via your Resume Page\n\n{name1} with the email address: {email_address1} says '{body1}'")
+        try:
+            msg = Message(subject, sender=os.environ.get("gmail_address"), recipients=[receiver_address])
+            msg.body = body1
+            mail.send(msg)
+        except:
+            title = "Sorry about this"
+            subtitle = 'Your message could not be delivered'
+            return render_template('index.html', form=form, title=title, subtitle=subtitle)
         title = 'Message Delivered'
         subtitle = 'Thank you for reaching out'
         return render_template('index.html', form=form, title=title, subtitle=subtitle)
