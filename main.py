@@ -6,7 +6,6 @@ from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail, Message
-import smtplib
 
 app = Flask(__name__)
 mail = Mail(app)
@@ -14,8 +13,7 @@ app.config['MAIL_USERNAME'] = os.environ.get("gmail_address")
 app.config['MAIL_PASSWORD'] = os.environ.get("gmail_password")
 receiver_address = "lesliedouglas23@gmail.com"
 app.config['MAIL_USE_TLS'] = False
-# app.config['SECRET_KEY'] = os.environ.get("secret_key")
-app.config['SECRET_KEY'] = "erefsdfs"
+app.config['SECRET_KEY'] = os.environ.get("secret_key")
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
@@ -58,4 +56,4 @@ def home():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
