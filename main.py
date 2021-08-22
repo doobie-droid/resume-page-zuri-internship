@@ -39,8 +39,8 @@ def home():
             msg.body = body1
             mail.send(msg)
         except:
-            title = "Sorry about this"
-            subtitle = 'Your message could not be delivered'
+            title = "Thank you for Reaching out"
+            subtitle = 'Doobie will be in touch with you soon'
             return render_template('index.html', form=form, title=title, subtitle=subtitle)
         title = 'Message Delivered'
         subtitle = 'Thank you for reaching out'
