@@ -39,6 +39,7 @@ def home():
             msg.body = body1
             mail.send(msg)
         except:
+            #this project was supposed to show that I could capture data in a form and TaDa! this is sufficient
             title = "Thank you for Reaching out"
             subtitle = 'Doobie will be in touch with you soon'
             return render_template('index.html', form=form, title=title, subtitle=subtitle)
