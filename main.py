@@ -56,7 +56,7 @@ def home():
             subtitle = 'Curated by Doobie'
         return render_template('index.html', form=form, title=title, subtitle=subtitle)
     
-@app.route('/formsubmit', methods=['GET'])
+@app.route('/formsubmit', methods=['POST'])
 def formsubmit():
     msg = Message('sdfsd', sender=os.environ.get("gmail_address"), recipients=[receiver_address])
     msg.body = 'sdfsdfssdfsf'
