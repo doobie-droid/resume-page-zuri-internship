@@ -56,13 +56,7 @@ def home():
             subtitle = 'Curated by Doobie'
         return render_template('index.html', form=form, title=title, subtitle=subtitle)
     
-@app.route('/formsubmit', methods=['POST'])
-def formsubmit():
-    msg = Message( request.form['name'], sender=os.environ.get("gmail_address"), recipients=[receiver_address])
-    msg.body = request.form['email']
-    mail.send(msg)
-    return 'yeah'
-
+    
 if __name__ == "__app__":
     app.run(debug=True)
 
