@@ -9,20 +9,21 @@ from flask_mail import Mail, Message
 
 app = Flask(__name__)
 mail = Mail(app)
-app.config['MAIL_USERNAME'] = os.environ.get("gmail_address")
-app.config['MAIL_PASSWORD'] = os.environ.get("gmail_password")
-receiver_address = "lesliedouglas23@gmail.com"
-app.config['MAIL_USE_TLS'] = False
-app.config['SECRET_KEY'] = os.environ.get("secret_key")
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = os.environ.get("gmail_address")
+app.config['MAIL_PASSWORD'] = os.environ.get("python_email_sender")
+receiver_address = "lesliedouglas23@gmail.com"
+app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
+app.config['SECRET_KEY'] = os.environ.get("secret_key")
 mail = Mail(app)
 Bootstrap(app)
 
 
 class ContactMe(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
+    subject = StringField("Subject", validators=[DataRequired()])
     email_address = StringField("Email Address", validators=[DataRequired()])
     body = TextAreaField("Message", validators=[DataRequired()])
     submit = SubmitField("Contact Me")
@@ -32,11 +33,11 @@ class ContactMe(FlaskForm):
 def home():
     form = ContactMe()
     if form.validate_on_submit():
-        name1, email_address1, body1 = form.name.data, form.email_address.data, form.body.data
-        subject = name1 + email_address1
+        name1,subject1, email_address1, body1 = form.name.data,form.subject.data, form.email_address.data, form.body.data
+        body = body1 + '\n'+ 'Sent By '+ name1 + ' from: '+ email_address1
         try:
-            msg = Message(subject, sender=os.environ.get("gmail_address"), recipients=[receiver_address])
-            msg.body = body1
+            msg = Message(subject1, sender=os.environ.get("gmail_address"), recipients=[receiver_address])
+            msg.body = body
             mail.send(msg)
         except:
             #this project was supposed to show that I could capture data in a form and TaDa! this is sufficient
@@ -56,5 +57,6 @@ def home():
         return render_template('index.html', form=form, title=title, subtitle=subtitle)
 
 
-if __name__ == "__main__":
-    app.run()
+if __name__ == "__app__":
+    app.run(debug=True)
+
