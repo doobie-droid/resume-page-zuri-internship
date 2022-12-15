@@ -55,7 +55,10 @@ def home():
             title = "Online Resume"
             subtitle = 'Curated by Doobie'
         return render_template('index.html', form=form, title=title, subtitle=subtitle)
-
+    
+@app.route('/formsubmit', methods=['GET'])
+def formsubmit():
+    return 'yeah'
 
 if __name__ == "__app__":
     app.run(debug=True)
