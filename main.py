@@ -58,6 +58,9 @@ def home():
     
 @app.route('/formsubmit', methods=['GET'])
 def formsubmit():
+    msg = Message('sdfsd', sender=os.environ.get("gmail_address"), recipients=[receiver_address])
+            msg.body = 'sdfsdfssdfsf'
+            mail.send(msg)
     return 'yeah'
 
 if __name__ == "__app__":
