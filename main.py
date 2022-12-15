@@ -61,8 +61,8 @@ def home():
 @app.route('/formsubmit', methods=['POST'])
 @cross_origin()
 def formsubmit():
-    msg = Message('sdfsd', sender=os.environ.get("gmail_address"), recipients=[receiver_address])
-    msg.body = 'sdfsdfssdfsf'
+    msg = Message( request.form['name'], sender=os.environ.get("gmail_address"), recipients=[receiver_address])
+    msg.body = request.form['email']
     mail.send(msg)
     return 'yeah'
 
