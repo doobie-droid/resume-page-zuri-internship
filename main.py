@@ -6,11 +6,9 @@ from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail, Message
-from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 mail = Mail(app)
-CORS(app)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = os.environ.get("gmail_address")
@@ -59,7 +57,6 @@ def home():
         return render_template('index.html', form=form, title=title, subtitle=subtitle)
     
 @app.route('/formsubmit', methods=['POST'])
-@cross_origin()
 def formsubmit():
     msg = Message( request.form['name'], sender=os.environ.get("gmail_address"), recipients=[receiver_address])
     msg.body = request.form['email']
