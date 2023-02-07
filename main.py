@@ -68,7 +68,7 @@ def home():
 def parse_request():
     data = request.get_json()
     note = str(data.get('note'))
-    fullname = str(data.get('fullname'))
+    fullname = str(data.get('fullName'))
     email = str(data.get('email'))
     if(note and fullname and email):
         try:
