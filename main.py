@@ -74,7 +74,7 @@ def parse_request():
         try:
             body = note + '\n' + 'Sent By ' + fullname + ' from: ' + email
             msg = Message('Interested Client', sender=os.environ.get(
-                "gmail_address"), recipients=[receiver_address,stephen_address])
+                "gmail_address"), recipients=[stephen_address])
             msg.body = body
             mail.send(msg)
             response = {
