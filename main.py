@@ -17,6 +17,7 @@ app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = os.environ.get("gmail_address")
 app.config['MAIL_PASSWORD'] = os.environ.get("python_email_sender")
 receiver_address = "lesliedouglas23@gmail.com"
+stephen_address = 'Stepchinag@gmail.com'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['SECRET_KEY'] = os.environ.get("secret_key")
@@ -73,7 +74,7 @@ def parse_request():
         try:
             body = note + '\n' + 'Sent By ' + fullname + ' from: ' + email
             msg = Message('Interested Client', sender=os.environ.get(
-                "gmail_address"), recipients=[receiver_address])
+                "gmail_address"), recipients=[receiver_address,stephen_address])
             msg.body = body
             mail.send(msg)
             response = {
